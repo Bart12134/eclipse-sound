@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ECLIPSE sound</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0E1226, #2A1E4F, #3A2B6E);
+      color: #E6E6F0;
+      min-height: 100vh;
+    }
+
+    .waves {
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 20% 30%, rgba(255, 215, 140, 0.08), transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(255, 215, 140, 0.06), transparent 45%);
+      z-index: -1;
+    }
+
+    header {
+      padding: 80px 10%;
+      position: relative;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      letter-spacing: 0.2em;
+      font-weight: 400;
+    }
+
+    h1 span {
+      background: linear-gradient(90deg, #C7A85D, #F1E1A6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      margin-top: 20px;
+      max-width: 600px;
+      font-weight: 300;
+      opacity: 0.85;
+    }
+
+    /* LANGUAGE SWITCH */
+    .lang-switch {
+      position: absolute;
+      top: 30px;
+      right: 10%;
+      display: flex;
+      gap: 10px;
+    }
+
+    .lang-switch button {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #E6E6F0;
+      padding: 6px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      transition: all 0.3s ease;
+    }
+
+    .lang-switch button.active,
+    .lang-switch button:hover {
+      background: #C7A85D;
+      color: #0E1226;
+      border-color: #C7A85D;
+    }
+
+    section {
+      padding: 100px 10%;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+    }
+
+    .card {
+      padding: 30px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 20px;
+      backdrop-filter: blur(8px);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+    }
+
+    .card h3 {
+      margin-bottom: 15px;
+      font-weight: 400;
+      color: #F1E1A6;
+    }
+
+    footer {
+      padding: 60px 10%;
+      text-align: center;
+      font-size: 0.9rem;
+      opacity: 0.6;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="waves"></div>
+
+<header>
+  <div class="lang-switch">
+    <button id="btn-en">EN</button>
+    <button id="btn-pl">PL</button>
+  </div>
+
+  <h1>ECLIPSE <span>sound</span></h1>
+  <p class="subtitle" data-key="subtitle"></p>
+</header>
+
+<section>
+  <div class="grid">
+    <div class="card">
+      <h3 data-key="ambientTitle"></h3>
+      <p data-key="ambientText"></p>
+    </div>
+
+    <div class="card">
+      <h3 data-key="filmTitle"></h3>
+      <p data-key="filmText"></p>
+    </div>
+
+    <div class="card">
+      <h3 data-key="expTitle"></h3>
+      <p data-key="expText"></p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="card" style="max-width:600px;margin:auto;">
+    <h3 data-key="contact"></h3>
+    <p>
+      alex@eclipsesoundstudio.com<br>
+      www.eclipsesoundstudio.com
+    </p>
+  </div>
+</section>
+
+<footer data-key="footer"></footer>
+
+<script>
+  const translations = {
+    en: {
+      subtitle: "Immersive ambient soundscapes for games, film and digital experiences.",
+      ambientTitle: "Ambient Design",
+      ambientText: "Deep atmospheric layers and evolving sound beds built for immersion.",
+      filmTitle: "Games & Film",
+      filmText: "Adaptive soundscapes for interactive worlds and cinematic tension.",
+      expTitle: "Experimental Audio",
+      expText: "Drones, granular synthesis and sonic minimalism.",
+      contact: "Contact",
+      footer: "© 2025 ECLIPSE sound · United by music"
+    },
+    pl: {
+      subtitle: "Immersyjne ambientowe pejzaże dźwiękowe do gier, filmów i doświadczeń cyfrowych.",
+      ambientTitle: "Projektowanie Ambientu",
+      ambientText: "Głębokie warstwy atmosfery i ewoluujące struktury dźwiękowe.",
+      filmTitle: "Gry i Film",
+      filmText: "Adaptacyjne pejzaże dźwiękowe dla światów interaktywnych i kina.",
+      expTitle: "Eksperymentalne Audio",
+      expText: "Drony, synteza granularna i minimalistyczne brzmienia.",
+      contact: "Kontakt",
+      footer: "© 2025 ECLIPSE sound · Połączeni dźwiękiem"
+    }
+  };
+
+  const buttons = {
+    en: document.getElementById("btn-en"),
+    pl: document.getElementById("btn-pl")
+  };
+
+  function setLanguage(lang) {
+    document.querySelectorAll("[data-key]").forEach(el => {
+      const key = el.getAttribute("data-key");
+      el.textContent = translations[lang][key];
+    });
+
+    localStorage.setItem("lang", lang);
+    buttons.en.classList.toggle("active", lang === "en");
+    buttons.pl.classList.toggle("active", lang === "pl");
+  }
+
+  const savedLang = localStorage.getItem("lang") || "en";
+  setLanguage(savedLang);
+
+  buttons.en.onclick = () => setLanguage("en");
+  buttons.pl.onclick = () => setLanguage("pl");
+</script>
+
+</body>
+</html>
