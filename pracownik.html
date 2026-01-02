@@ -1,101 +1,187 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8" />
-  <title>Eclipse Sound – Pracownik</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<title>Eclipse Sound – Bartłomiej Lach</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: linear-gradient(135deg, #0b1026, #2b0f45);
-      color: #ffffff;
-      min-height: 100vh;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-    header {
-      padding: 20px;
-      text-align: center;
-      background: rgba(0, 0, 0, 0.4);
-    }
+<style>
+:root {
+  --bg1: #0b1026;
+  --bg2: #2b0f45;
+  --gold: #ffd36a;
+  --violet: #bfa3ff;
+}
 
-    header h1 {
-      margin: 0;
-      font-size: 2.2rem;
-      letter-spacing: 2px;
-    }
+* {
+  box-sizing: border-box;
+}
 
-    .container {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 20px;
-    }
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  background: radial-gradient(circle at top, #1a1f45, var(--bg1)) ,
+              linear-gradient(135deg, var(--bg1), var(--bg2));
+  color: #fff;
+  overflow-x: hidden;
+}
 
-    .card {
-      background: rgba(255, 255, 255, 0.08);
-      border-radius: 16px;
-      padding: 30px;
-      box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
-      backdrop-filter: blur(8px);
-    }
+/* ==== HEADER ==== */
+header {
+  text-align: center;
+  padding: 50px 20px 20px;
+}
 
-    .card h2 {
-      margin-top: 0;
-      color: #ffd36a; /* złote wstawki */
-      font-size: 1.8rem;
-    }
+header h1 {
+  margin: 0;
+  font-size: 3rem;
+  letter-spacing: 4px;
+  background: linear-gradient(90deg, var(--gold), var(--violet));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
-    .info {
-      margin-top: 20px;
-      font-size: 1.1rem;
-      line-height: 1.8;
-    }
+header p {
+  opacity: .7;
+  letter-spacing: 2px;
+}
 
-    .info span {
-      color: #bfa3ff; /* fiolet */
-      font-weight: bold;
-    }
+/* ==== CARD ==== */
+.profile {
+  max-width: 850px;
+  margin: 60px auto;
+  padding: 40px;
+  border-radius: 26px;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(12px);
+  box-shadow:
+    0 0 40px rgba(0,0,0,.5),
+    inset 0 0 40px rgba(255,255,255,.04);
+  animation: fadeUp 1s ease forwards;
+}
 
-    a {
-      color: #ffd36a;
-      text-decoration: none;
-    }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
 
-    a:hover {
-      text-decoration: underline;
-    }
+.profile h2 {
+  font-size: 2.4rem;
+  margin-bottom: 10px;
+}
 
-    footer {
-      text-align: center;
-      padding: 20px;
-      opacity: 0.6;
-      font-size: 0.9rem;
-    }
-  </style>
+.role {
+  color: var(--violet);
+  font-weight: 300;
+  margin-bottom: 30px;
+}
+
+.line {
+  width: 120px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+  margin-bottom: 30px;
+}
+
+/* ==== INFO ==== */
+.info {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  font-size: 1.1rem;
+}
+
+.info div {
+  padding: 18px 22px;
+  border-radius: 14px;
+  background: rgba(0,0,0,.25);
+  transition: .35s;
+}
+
+.info div:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 0 20px rgba(191,163,255,.25);
+}
+
+.label {
+  color: var(--gold);
+  font-size: .85rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.value a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.value a:hover {
+  color: var(--gold);
+}
+
+/* ==== FOOTER ==== */
+footer {
+  text-align: center;
+  padding: 40px 20px;
+  opacity: .6;
+  font-size: .85rem;
+}
+
+/* ==== GLOW ==== */
+.glow {
+  position: fixed;
+  inset: -50%;
+  background: radial-gradient(circle, rgba(191,163,255,.08), transparent 60%);
+  pointer-events: none;
+  animation: rotate 30s linear infinite;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+</style>
 </head>
+
 <body>
 
-  <header>
-    <h1>ECLIPSE SOUND</h1>
-    <p>Podstrona pracownika</p>
-  </header>
+<div class="glow"></div>
 
-  <div class="container">
-    <div class="card">
-      <h2>Bartłomiej Lach</h2>
+<header>
+  <h1>ECLIPSE SOUND</h1>
+  <p>STAFF PROFILE</p>
+</header>
 
-      <div class="info">
-        <p><span>Stanowisko:</span> Pracownik Eclipse Sound</p>
-        <p><span>Email:</span> <a href="mailto:bartlomiejlach@gmail.com">bartlomiejlach@gmail.com</a></p>
-        <p><span>Telefon:</span> <a href="tel:+48503879362">503 879 362</a></p>
+<section class="profile">
+  <h2>Bartłomiej Lach</h2>
+  <div class="role">Pracownik · Eclipse Sound</div>
+  <div class="line"></div>
+
+  <div class="info">
+    <div>
+      <div class="label">Email</div>
+      <div class="value">
+        <a href="mailto:bartlomiejlach@gmail.com">
+          bartlomiejlach@gmail.com
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <div class="label">Telefon</div>
+      <div class="value">
+        <a href="tel:+48503879362">503 879 362</a>
       </div>
     </div>
   </div>
+</section>
 
-  <footer>
-    © 2026 Eclipse Sound
-  </footer>
+<footer>
+  © 2026 Eclipse Sound · All rights reserved
+</footer>
 
 </body>
 </html>
